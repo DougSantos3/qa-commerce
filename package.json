@@ -8,7 +8,7 @@
     "db": "node scripts/init_db.js",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
-    "cy:run:dev": "cypress run --config baseUrl=http://localhost:3000",
+    "cy:run:dev": "cypress run --config baseUrl=http://127.0.0.1:3000",
     "cy:run:qa": "cypress run --config baseUrl=https://qa.example.com",
     "cy:run:prod": "cypress run --config baseUrl=https://prod.example.com",
     "allure:generate": "allure generate ./allure-results --clean",

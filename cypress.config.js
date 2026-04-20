@@ -30,7 +30,7 @@ module.exports = defineConfig({
   e2e: {
     setupNodeEvents,
     specPattern: ["**/*.feature", "**/*.cy.js"],
-    baseUrl: "http://localhost:3000",
+    baseUrl: "http://127.0.0.1:3000",
     experimentalWebKitSupport: true
   },
 })
