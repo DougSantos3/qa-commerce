@@ -1,1 +1,1 @@
-{"reportName":"QA Commerce E2E Report","testRuns":[],"statistic":{"failed":0,"broken":0,"skipped":0,"passed":0,"unknown":0,"total":0},"time":{}}
+{"reportName":"QA Commerce E2E Report","testRuns":[],"statistic":{"failed":0,"broken":0,"skipped":0,"passed":13,"unknown":0,"total":13},"time":{"start":1776727623561,"stop":1776727658868,"duration":35307,"minDuration":31,"maxDuration":4758,"sumDuration":29212}}
