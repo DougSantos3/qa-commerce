@@ -54,6 +54,31 @@ jobs:
           mkdir -p allure-results/history
           cp -R gh-pages-dir/history/* allure-results/history/ || true
 
+      - name: Generate Allure Environment and Executor
+        if: always()
+        run: |
+          mkdir -p allure-results
+          cat <<EOF > allure-results/environment.properties
+          Environment=${{ github.event.inputs.environment }}
+          Browser=Electron
+          CI=GitHub Actions
+          Repository=${{ github.repository }}
+          Run_Number=${{ github.run_number }}
+          EOF
+          
+          cat <<EOF > allure-results/executor.json
+          {
+            "name": "GitHub Actions",
+            "type": "github",
+            "reportName": "QA Commerce E2E Report",
+            "url": "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}",
+            "reportUrl": "https://dougsantos3.github.io/qa-commerce/",
+            "buildUrl": "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}",
+            "buildName": "Cypress Run #${{ github.run_number }}",
+            "buildOrder": "${{ github.run_number }}"
+          }
+          EOF
+
       - name: Generate Allure Report
         if: always()
         run: npm run allure:generate
