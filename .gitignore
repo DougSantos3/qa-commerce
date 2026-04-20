@@ -129,7 +129,11 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
+# cypress
 cypress_results.txt
 *.png
 
+# internal db
 qa_commerce.db
+
+*.json
