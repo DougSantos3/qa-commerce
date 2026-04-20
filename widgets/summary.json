@@ -1,1 +1,1 @@
-{"reportName":"Allure Report","testRuns":[],"statistic":{"failed":0,"broken":0,"skipped":0,"passed":13,"unknown":0,"total":13},"time":{"start":1776723918545,"stop":1776723953037,"duration":34492,"minDuration":28,"maxDuration":4927,"sumDuration":28741}}
+{"reportName":"QA Commerce E2E Report","testRuns":[],"statistic":{"failed":0,"broken":0,"skipped":0,"passed":13,"unknown":0,"total":13},"time":{"start":1776724514249,"stop":1776724550517,"duration":36268,"minDuration":29,"maxDuration":5663,"sumDuration":30194}}
