@@ -128,3 +128,8 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+cypress_results.txt
+*.png
+
+qa_commerce.db
