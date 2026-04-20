@@ -1,1 +1,1 @@
-{"reportName":"QA Commerce E2E Report","testRuns":[],"statistic":{"failed":0,"broken":0,"skipped":0,"passed":13,"unknown":0,"total":13},"time":{"start":1776727799896,"stop":1776727838783,"duration":38887,"minDuration":36,"maxDuration":4875,"sumDuration":29765}}
+{"reportName":"QA Commerce E2E Report","testRuns":[],"statistic":{"failed":0,"broken":0,"skipped":0,"passed":13,"unknown":0,"total":13},"time":{"start":1776728623593,"stop":1776728672129,"duration":48536,"minDuration":173,"maxDuration":6013,"sumDuration":40165}}
