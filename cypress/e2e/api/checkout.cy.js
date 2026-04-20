@@ -1,7 +1,7 @@
 import { faker } from '@faker-js/faker'
 import ApiService from '../../support/services/ApiService'
 
-describe('QA-Commerce API - CRUD Scenarios', () => {
+describe('CRUD Scenarios', () => {
   let userId;
 
   beforeEach(() => {
