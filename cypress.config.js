@@ -5,7 +5,11 @@ const createEsbuildPlugin = require("@badeball/cypress-cucumber-preprocessor/esb
 
 const { allureCypress } = require("allure-cypress/reporter")
 
+const cypressOnFix = require("cypress-on-fix")
+
 async function setupNodeEvents(on, config) {
+  on = cypressOnFix(on)
+  
   await preprocessor.addCucumberPreprocessorPlugin(on, config)
 
   on(
@@ -15,7 +19,9 @@ async function setupNodeEvents(on, config) {
     })
   )
 
-  allureCypress(on, config)
+  allureCypress(on, config, {
+    resultsDir: "allure-results"
+  })
 
   return config
 }
