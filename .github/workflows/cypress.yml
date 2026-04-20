@@ -12,6 +12,17 @@ on:
           - dev
           - qa
           - prod
+      browser:
+        description: 'Browser to run tests'
+        required: true
+        default: 'chrome'
+        type: choice
+        options:
+          - electron
+          - chrome
+          - edge
+          - firefox
+          - safari(webkit)
 
 permissions:
   contents: write
@@ -36,7 +47,12 @@ jobs:
         run: npm start & npx wait-on http://localhost:3000
 
       - name: Run Cypress Tests
-        run: npm run cy:run:${{ github.event.inputs.environment }}
+        run: |
+          BROWSER_ARG="${{ github.event.inputs.browser }}"
+          if [ "$BROWSER_ARG" == "safari(webkit)" ]; then
+            BROWSER_ARG="webkit"
+          fi
+          npm run cy:run:${{ github.event.inputs.environment }} -- --browser $BROWSER_ARG
         env:
           allure_results_dir: allure-results
 
@@ -60,7 +76,7 @@ jobs:
           mkdir -p allure-results
           cat <<EOF > allure-results/environment.properties
           Environment=${{ github.event.inputs.environment }}
-          Browser=Electron
+          Browser=${{ github.event.inputs.browser }}
           CI=GitHub Actions
           Repository=${{ github.repository }}
           Run_Number=${{ github.run_number }}

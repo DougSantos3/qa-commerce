@@ -31,5 +31,6 @@ module.exports = defineConfig({
     setupNodeEvents,
     specPattern: ["**/*.feature", "**/*.cy.js"],
     baseUrl: "http://localhost:3000",
+    experimentalWebKitSupport: true
   },
 })
