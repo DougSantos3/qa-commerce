@@ -68,7 +68,7 @@ O projeto está configurado com o **Allure Report 2** totalmente integrado ao pi
 A cada execução, um relatório dinâmico e interativo é gerado com gráficos, histórico de tendências (trends) e evidências.
 
 👉 **Você pode clicar, acessar e ver o relatório completo aqui:**  
-[https://dougsantos3.github.io/qa-commerce/26/index.html#](https://dougsantos3.github.io/qa-commerce/26/index.html#)
+[https://dougsantos3.github.io/qa-commerce/26/index.html#](https://dougsantos3.github.io/qa-commerce/32/index.html#)
 
 ## ☁️ Execução na Nuvem (GitHub Actions)
 
