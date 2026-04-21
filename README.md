@@ -16,17 +16,20 @@ Este projeto contém a automação de testes funcionais (Web) e de API para o si
 cypress/
   ├── e2e/
   │   ├── api/                 # Testes de API (Cypress Request)
-  │   │   └── checkout.cy.js   # Validações de backend (POST, GET, PUT, DELETE)
+  │   │   └── checkout.cy.js   # Validações de backend (POST, GET, DELETE)
   │   ├── features/            # Arquivos Gherkin (.feature) 
-  │   │   └── checkout.feature # Cenários Web BDD com escrita declarativa
+  │   │   ├── checkout.feature # Cenários Web BDD com escrita declarativa
+  │   │   └── ...              # Outras features (home, carrinho, etc)
   │   └── steps/               # Implementação dos Steps do Cucumber
-  │       └── checkout.steps.js
+  │       ├── checkout.steps.js
+  │       └── ...              # Outros arquivos de steps
   ├── support/
+  │   ├── e2e.js               # Configurações globais (Allure, Hooks)
+  │   ├── commands.js          # Comandos customizados do Cypress
   │   ├── pages/               # Classes do Page Objects Pattern
-  │   │   ├── CarrinhoPage.js
   │   │   ├── CheckoutPage.js
   │   │   ├── HomePage.js
-  │   │   └── MinhaContaPage.js
+  │   │   └── ...              # Outras páginas
   │   └── services/            # Serviços Reutilizáveis (APIs)
   │       └── ApiService.js
 ```
@@ -86,7 +89,7 @@ Ao disparar os testes (seja no GitHub Actions ou via linha de comando), você po
 
 > ⚠️ **Importante:** Atualmente, para que os testes passem na nuvem, **você deve rodar no ambiente `dev`**. O motivo é que a aplicação simulada roda localmente no servidor do GitHub Actions. Os ambientes `qa` e `prod` estão com URLs fictícias (`qa.example.com`).
 > 💡 **Quer testar o Multi-Ambiente ou rodar o Pipeline você mesmo?**
-> - **Para rodar no GitHub Actions:** Como você não tem permissão de disparar pipelines neste repositório, você deve fazer um **Fork** deste projeto para a sua conta. No seu Fork, a aba *Actions* estará liberada para você brincar! Você também poderá alterar as URLs de `qa` e `prod` no arquivo `package.json` para testar os seus próprios servidores.
+> - **Para rodar no GitHub Actions:** Como você não tem permissão de disparar pipelines neste repositório, você deve fazer um **Fork** deste projeto para a sua conta. No seu Fork, a aba *Actions* estará liberada para você! Você também poderá alterar as URLs de `qa` e `prod` no arquivo `package.json` para testar os seus próprios servidores.
 > - **Para rodar Localmente:** Basta fazer o **Clone** do projeto (ou do seu Fork) para a sua máquina, alterar as URLs no `package.json` se desejar, e usar os comandos de terminal abaixo.
 
 ### 💻 Execução Local (Comandos Cypress)
