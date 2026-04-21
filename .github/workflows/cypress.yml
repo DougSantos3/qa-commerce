@@ -18,10 +18,10 @@ on:
         default: 'chrome'
         type: choice
         options:
-          - electron
           - chrome
           - edge
           - safari(webkit)
+          - electron
 
 permissions:
   contents: write
@@ -85,6 +85,14 @@ jobs:
             "buildOrder": "${{ github.run_number }}"
           }
           EOF
+
+      - name: Get Allure history
+        uses: actions/checkout@v4
+        if: always()
+        continue-on-error: true
+        with:
+          ref: gh-pages
+          path: gh-pages
 
       - name: Generate Allure Report
         uses: simple-elf/allure-report-action@master
