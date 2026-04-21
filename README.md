@@ -84,14 +84,31 @@ Os navegadores disponíveis para escolha são:
 O framework foi arquitetado para suportar múltiplos ambientes (Dev, QA, Prod) sem a necessidade de alterar código, apenas trocando a URL base (BaseUrl).
 Ao disparar os testes (seja no GitHub Actions ou via linha de comando), você pode selecionar o ambiente alvo.
 
-> ⚠️ **Importante:** Atualmente, para que os testes passem, **você deve rodar no ambiente `dev`**. O motivo é que a aplicação simulada roda localmente durante a execução. Os ambientes `qa` e `prod` estão cadastrados com URLs fictícias (`qa.example.com` etc) no `package.json`. No futuro, basta alterar essas URLs para os endereços reais e a automação testará qualquer ambiente automaticamente!
+> ⚠️ **Importante:** Atualmente, para que os testes passem na nuvem, **você deve rodar no ambiente `dev`**. O motivo é que a aplicação simulada roda localmente no servidor do GitHub Actions. Os ambientes `qa` e `prod` estão com URLs fictícias (`qa.example.com`).
+> 💡 **Quer testar o Multi-Ambiente ou rodar o Pipeline você mesmo?**
+> - **Para rodar no GitHub Actions:** Como você não tem permissão de disparar pipelines neste repositório, você deve fazer um **Fork** deste projeto para a sua conta. No seu Fork, a aba *Actions* estará liberada para você brincar! Você também poderá alterar as URLs de `qa` e `prod` no arquivo `package.json` para testar os seus próprios servidores.
+> - **Para rodar Localmente:** Basta fazer o **Clone** do projeto (ou do seu Fork) para a sua máquina, alterar as URLs no `package.json` se desejar, e usar os comandos de terminal abaixo.
 
-Para executar todos os testes (API e Web) no terminal (modo headless):
+### 💻 Execução Local (Comandos Cypress)
+
+Se você clonou o projeto e deseja rodar os testes na sua própria máquina (lembre-se de subir a aplicação alvo com `npm start` se for testar o ambiente `dev`), utilize os comandos abaixo:
+
+**Executar TODOS os testes (Web + API) em background:**
 ```bash
 npm run cypress:run
 ```
 
-Para abrir a interface interativa do Cypress e acompanhar a execução visualmente:
+**Executar APENAS os testes de API:**
+```bash
+npx cypress run --spec "cypress/e2e/api/**/*.cy.js"
+```
+
+**Executar APENAS os testes de Web/Front-end:**
+```bash
+npx cypress run --spec "cypress/e2e/features/**/*.feature"
+```
+
+**Abrir a interface visual interativa do Cypress:**
 ```bash
 npm run cypress:open
 ```
