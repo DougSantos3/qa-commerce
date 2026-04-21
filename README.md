@@ -79,6 +79,13 @@ Os navegadores disponíveis para escolha são:
 - **Safari (WebKit)**
 - **Electron** (Padrão)
 
+### 🌍 Execução Multi-Ambientes (Aviso)
+
+O framework foi arquitetado para suportar múltiplos ambientes (Dev, QA, Prod) sem a necessidade de alterar código, apenas trocando a URL base (BaseUrl).
+Ao disparar os testes (seja no GitHub Actions ou via linha de comando), você pode selecionar o ambiente alvo.
+
+> ⚠️ **Importante:** Atualmente, para que os testes passem, **você deve rodar no ambiente `dev`**. O motivo é que a aplicação simulada roda localmente durante a execução. Os ambientes `qa` e `prod` estão cadastrados com URLs fictícias (`qa.example.com` etc) no `package.json`. No futuro, basta alterar essas URLs para os endereços reais e a automação testará qualquer ambiente automaticamente!
+
 Para executar todos os testes (API e Web) no terminal (modo headless):
 ```bash
 npm run cypress:run
