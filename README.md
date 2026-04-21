@@ -59,9 +59,27 @@ npm start
 ```
 A aplicação estará disponível em `http://localhost:3000`
 
-**4. Execute os Testes:**
+## 📊 Relatórios de Teste (Allure Report 2)
 
-Para rodar todos os testes (API e Web) no terminal (modo headless):
+O projeto está configurado com o **Allure Report 2** totalmente integrado ao pipeline de CI/CD! 
+A cada execução, um relatório dinâmico e interativo é gerado com gráficos, histórico de tendências (trends) e evidências.
+
+👉 **Você pode clicar, acessar e ver o relatório completo aqui:**  
+[https://dougsantos3.github.io/qa-commerce/](https://dougsantos3.github.io/qa-commerce/)
+
+## ☁️ Execução na Nuvem (GitHub Actions)
+
+A automação está configurada para rodar nativamente no **GitHub Actions** (`.github/workflows/cypress.yml`). Você não precisa instalar nada na sua máquina para rodar!
+
+Através da interface do GitHub (aba *Actions* -> *Cypress E2E Tests* -> *Run workflow*), você tem a opção de escolher em qual navegador os testes serão executados, garantindo a compatibilidade (Cross-Browser Testing). 
+
+Os navegadores disponíveis para escolha são:
+- **Chrome**
+- **Edge**
+- **Safari (WebKit)**
+- **Electron** (Padrão)
+
+Para executar todos os testes (API e Web) no terminal (modo headless):
 ```bash
 npm run cypress:run
 ```
