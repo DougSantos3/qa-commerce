@@ -68,13 +68,17 @@ O projeto está configurado com o **Allure Report 2** totalmente integrado ao pi
 A cada execução, um relatório dinâmico e interativo é gerado com gráficos, histórico de tendências (trends) e evidências.
 
 👉 **Você pode clicar, acessar e ver o relatório completo aqui:**  
-[https://dougsantos3.github.io/qa-commerce/](https://dougsantos3.github.io/qa-commerce/)
+[https://dougsantos3.github.io/qa-commerce/26/index.html#](https://dougsantos3.github.io/qa-commerce/26/index.html#)
 
 ## ☁️ Execução na Nuvem (GitHub Actions)
 
 A automação está configurada para rodar nativamente no **GitHub Actions** (`.github/workflows/cypress.yml`). Você não precisa instalar nada na sua máquina para rodar!
 
-Através da interface do GitHub (aba *Actions* -> *Cypress E2E Tests* -> *Run workflow*), você tem a opção de escolher em qual navegador os testes serão executados, garantindo a compatibilidade (Cross-Browser Testing). 
+Ao acessar a aba *Actions* no GitHub, você notará a existência de dois workflows (Jobs) principais trabalhando em conjunto:
+1. **`Cypress E2E Tests`**: Este é o job que executa os testes de fato. Clicando nele, você acompanha os logs do Cypress em tempo real.
+2. **`pages build and deployment`**: Este job é acionado automaticamente logo após o fim dos testes. Ele é o responsável por publicar o relatório do Allure na internet. Para ver o relatório mais recente gerado, clique neste job, depois em `deploy` quando ele ficar verde(sucesso), aparecerá um link clicável direto para o seu painel do Allure!
+
+Através da interface (aba *Actions* -> *Cypress E2E Tests* -> *Run workflow*), você tem a opção de escolher em qual navegador os testes serão executados, garantindo a compatibilidade (Cross-Browser Testing). 
 
 Os navegadores disponíveis para escolha são:
 - **Chrome**
