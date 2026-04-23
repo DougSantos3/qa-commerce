@@ -144,7 +144,6 @@ browserstack-cypress-report.json
 # others
 *.json
 !cypress/fixtures/locales/**/*.json
-cypress/fixtures/auth.json
 .prettierignore
 .eslintignore
 .dockerignore
