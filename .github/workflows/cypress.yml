@@ -13,7 +13,7 @@ on:
           - qa
           - prod
       browser:
-        description: 'Browser to run tests'
+        description: 'Select browser or cloud platform'
         required: true
         default: 'chrome'
         type: choice
@@ -22,13 +22,6 @@ on:
           - edge
           - safari(webkit)
           - electron
-      execution_type:
-        description: 'Type of execution (Standard or BrowserStack)'
-        required: true
-        default: 'standard'
-        type: choice
-        options:
-          - standard
           - browserstack
 
 permissions:
@@ -50,7 +43,7 @@ jobs:
         run: npm ci
 
       - name: Install WebKit (if Safari)
-        if: ${{ github.event.inputs.execution_type == 'standard' && (github.event.inputs.browser == 'safari(webkit)' || github.event.inputs.browser == 'webkit') }}
+        if: ${{ github.event.inputs.browser == 'safari(webkit)' }}
         run: |
           npx playwright install webkit
           sudo npx playwright install-deps webkit
@@ -65,7 +58,7 @@ jobs:
         run: echo '${{ secrets.CYPRESS_AUTH }}' > cypress/fixtures/auth.json
 
       - name: Run Cypress Tests (Standard)
-        if: ${{ github.event.inputs.execution_type == 'standard' }}
+        if: ${{ github.event.inputs.browser != 'browserstack' }}
         run: |
           BROWSER_ARG="${{ github.event.inputs.browser }}"
           if [ "$BROWSER_ARG" == "safari(webkit)" ]; then
@@ -76,7 +69,7 @@ jobs:
           allure_results_dir: allure-results
 
       - name: Run Cypress Tests (BrowserStack)
-        if: ${{ github.event.inputs.execution_type == 'browserstack' }}
+        if: ${{ github.event.inputs.browser == 'browserstack' }}
         run: npm run browserstack:run
         env:
           BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
