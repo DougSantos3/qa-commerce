@@ -31,10 +31,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
           node-version: 20
 
@@ -47,9 +47,11 @@ jobs:
             npx playwright install webkit
             sudo npx playwright install-deps webkit
           fi
-      - name: Start Local API Server
+      - name: Initialize Database and Start Local API Server
         if: ${{ github.event.inputs.environment == 'dev' }}
-        run: npm start & npx wait-on http://127.0.0.1:3000
+        run: |
+          npm run db
+          npm start & npx wait-on http://127.0.0.1:3000
 
       - name: Run Cypress Tests
         run: |
@@ -72,7 +74,7 @@ jobs:
           Repository=${{ github.repository }}
           Run_Number=${{ github.run_number }}
           EOF
-          
+
           cat <<EOF > allure-results/executor.json
           {
             "name": "GitHub Actions",
@@ -95,7 +97,7 @@ jobs:
           path: gh-pages
 
       - name: Generate Allure Report
-        uses: simple-elf/allure-report-action@master
+        uses: simple-elf/allure-report-action@53ebb757a2097edc77c53ecef4d454fc2f2f774c
         if: always()
         id: allure-report
         with:
@@ -106,7 +108,7 @@ jobs:
           keep_reports: 20
 
       - name: Upload Allure Report Artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
         with:
           name: allure-report-${{ github.event.inputs.environment }}
@@ -114,7 +116,7 @@ jobs:
           retention-days: 10
 
       - name: Deploy Allure Report to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
+        uses: peaceiris/actions-gh-pages@4f9cc6602d3f66b9c108549d475ec49e8ef4d45e
         if: always()
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
