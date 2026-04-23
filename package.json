@@ -8,11 +8,17 @@
     "db": "node scripts/init_db.js",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
+    "browserstack:run": "dotenv browserstack-cypress run --sync",
+    "test:local": "concurrently --kill-others --success first \"npm start\" \"wait-on http://127.0.0.1:3000 && npm run cypress:run\"",
+    "test:browserstack": "concurrently --kill-others --success first \"npm start\" \"wait-on http://127.0.0.1:3000 && npm run browserstack:run\"",
     "cy:run:dev": "cypress run --config baseUrl=http://127.0.0.1:3000",
     "cy:run:qa": "cypress run --config baseUrl=https://qa.example.com",
     "cy:run:prod": "cypress run --config baseUrl=https://prod.example.com",
     "allure:generate": "allure generate ./allure-results --clean",
-    "allure:open": "allure open"
+    "allure:open": "allure open",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write ."
   },
   "keywords": [],
   "author": "",
@@ -34,12 +40,24 @@
   "devDependencies": {
     "@badeball/cypress-cucumber-preprocessor": "^24.0.1",
     "@bahmutov/cypress-esbuild-preprocessor": "^2.2.8",
+    "@eslint/js": "^9.39.4",
     "@faker-js/faker": "^10.4.0",
     "allure-commandline": "^2.38.1",
     "allure-cypress": "^3.7.1",
+    "browserstack-cypress-cli": "^1.36.4",
+    "concurrently": "^9.2.1",
+    "cross-env": "^10.1.0",
     "cypress": "^13.13.3",
     "cypress-on-fix": "^1.1.0",
+    "dotenv-cli": "^11.0.0",
     "esbuild": "^0.28.0",
-    "playwright-webkit": "^1.59.1"
+    "eslint": "^9.39.4",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-cypress": "^6.3.1",
+    "eslint-plugin-prettier": "^5.5.5",
+    "globals": "^15.15.0",
+    "playwright-webkit": "^1.59.1",
+    "prettier": "^3.8.3",
+    "wait-on": "^9.0.5"
   }
 }
