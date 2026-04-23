@@ -160,15 +160,15 @@ Ao disparar os testes (seja no GitHub Actions ou via linha de comando), você po
 >
 > - **Para rodar no GitHub Actions:** Como você não tem permissão de disparar pipelines neste repositório, você deve fazer um **Fork** deste projeto para a sua conta. No seu Fork, a aba _Actions_ estará liberada para você! Você também poderá alterar as URLs de `qa` e `prod` no arquivo `package.json` para testar os seus próprios servidores.
 >
->   > 🔐 **Configuração de Secrets:** No seu Fork, para que os testes de autenticação e nuvem funcionem, você deve criar os seguintes Secrets em `Settings > Secrets and variables > Actions`:
+>   > 🔐 **Configuração de Secrets:** No seu Fork, para que os testes de autenticação e nuvem funcionem, você deve criar os seguintes Secrets em `Settings > Secrets and variables > Actions`. **Atenção:** Você deve usar as suas próprias chaves obtidas no painel do BrowserStack:
 >   > - **`CYPRESS_AUTH`**: (JSON)
 >   >   ```json
 >   >   { "adminEmail": "email@example.com", "adminPassword": "password" }
 >   >   ```
->   > - **`BROWSERSTACK_USERNAME`**: Seu usuário do BrowserStack.
->   > - **`BROWSERSTACK_ACCESS_KEY`**: Sua chave de acesso do BrowserStack.
+>   > - **`BROWSERSTACK_USERNAME`**: O seu nome de usuário (Username) do BrowserStack.
+>   > - **`BROWSERSTACK_ACCESS_KEY`**: A sua chave de acesso (Access Key) do BrowserStack.
 >
-> - **Para rodar Localmente:** Basta fazer o **Clone** do projeto (ou do seu Fork) para a sua máquina. Para habilitar o BrowserStack localmente, crie um arquivo `.env` na raiz do projeto e preencha com suas chaves (veja a seção de [Credenciais do BrowserStack](#-configuração-das-credenciais) abaixo).
+> - **Para rodar Localmente:** Basta fazer o **Clone** do projeto (ou do seu Fork) para a sua máquina. Para habilitar o BrowserStack localmente, use o arquivo `.env` na raiz do projeto e preencha com **as suas credenciais pessoais** (veja a seção de [Credenciais do BrowserStack](#-configuração-das-credenciais) abaixo).
 
 ### 💻 Execução Local (Comandos Cypress)
 
