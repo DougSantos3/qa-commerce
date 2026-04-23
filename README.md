@@ -1,10 +1,9 @@
-# 🛒 QA Commerce - Automação de Testes
+<div align="center">
+  <h1>🛒 QA Commerce - Automação de Testes</h1>
 
-An enterprise-grade End-to-End & API testing suite built with **Cypress** and **Cucumber**.
-Designed to demonstrate advanced QA automation strategies, including Page Object Model, dynamic data generation, and BDD.
+  <p>An enterprise-grade End-to-End & API testing suite built with <b>Cypress</b> and <b>Cucumber</b>.</p>
+  <p>Designed to demonstrate advanced QA automation strategies, including Page Object Model, dynamic data generation, and BDD.</p>
 
-  <br>
-  
   <p>
     <img src="https://img.shields.io/badge/Cypress-17202C?style=for-the-badge&logo=cypress&logoColor=white" alt="Cypress" />
     <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white" alt="Node.js" />
