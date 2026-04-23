@@ -1,0 +1,19 @@
+{
+  "cart": {
+    "empty": "Seu carrinho está vazio.",
+    "removed": "Produto removido do carrinho!",
+    "quantityLabel": "Quantidade:"
+  },
+  "home": {
+    "added": "Produto adicionado ao carrinho!"
+  },
+  "checkout": {
+    "success": "Obrigado pelo seu pedido",
+    "orderIdLabel": "ID do Pedido:",
+    "totalLabel": "Total:",
+    "statusLabel": "Status:"
+  },
+  "api": {
+    "userUpdateSuccess": "Usuário atualizado com sucesso."
+  }
+}

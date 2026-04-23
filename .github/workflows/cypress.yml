@@ -53,6 +53,9 @@ jobs:
           npm run db
           npm start & npx wait-on http://127.0.0.1:3000
 
+      - name: Create Auth Fixture from Secret
+        run: echo '${{ secrets.CYPRESS_AUTH }}' > cypress/fixtures/auth.json
+
       - name: Run Cypress Tests
         run: |
           BROWSER_ARG="${{ github.event.inputs.browser }}"
