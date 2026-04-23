@@ -159,7 +159,16 @@ Ao disparar os testes (seja no GitHub Actions ou via linha de comando), você po
 > 💡 **Quer testar o Multi-Ambiente ou rodar o Pipeline você mesmo?**
 >
 > - **Para rodar no GitHub Actions:** Como você não tem permissão de disparar pipelines neste repositório, você deve fazer um **Fork** deste projeto para a sua conta. No seu Fork, a aba _Actions_ estará liberada para você! Você também poderá alterar as URLs de `qa` e `prod` no arquivo `package.json` para testar os seus próprios servidores.
-> - **Para rodar Localmente:** Basta fazer o **Clone** do projeto (ou do seu Fork) para a sua máquina, alterar as URLs no `package.json` se desejar, e usar os comandos de terminal abaixo.
+>
+>   > 🔐 **Configuração de Secrets:** No seu Fork, para que os testes de autenticação e nuvem funcionem, você deve criar os seguintes Secrets em `Settings > Secrets and variables > Actions`:
+>   > - **`CYPRESS_AUTH`**: (JSON)
+>   >   ```json
+>   >   { "adminEmail": "email@example.com", "adminPassword": "password" }
+>   >   ```
+>   > - **`BROWSERSTACK_USERNAME`**: Seu usuário do BrowserStack.
+>   > - **`BROWSERSTACK_ACCESS_KEY`**: Sua chave de acesso do BrowserStack.
+>
+> - **Para rodar Localmente:** Basta fazer o **Clone** do projeto (ou do seu Fork) para a sua máquina. Para habilitar o BrowserStack localmente, crie um arquivo `.env` na raiz do projeto e preencha com suas chaves (veja a seção de [Credenciais do BrowserStack](#-configuração-das-credenciais) abaixo).
 
 ### 💻 Execução Local (Comandos Cypress)
 
@@ -229,5 +238,7 @@ O comando abaixo inicia o servidor local automaticamente, estabelece a conexão 
 ```bash
 npm run test:browserstack
 ```
+
+> ⚠️ **Atenção (Plano Free):** Se você estiver utilizando uma conta gratuita do BrowserStack, fique atento aos limites de minutos e instâncias. Caso o limite seja atingido, o serviço interromperá a execução automaticamente e os testes aparecerão como falha no console.
 
 Você pode acompanhar a execução em tempo real no dashboard do BrowserStack. Os navegadores configurados incluem **Chrome, Firefox, Edge e Safari**.
