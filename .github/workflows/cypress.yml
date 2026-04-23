@@ -22,6 +22,14 @@ on:
           - edge
           - safari(webkit)
           - electron
+      execution_type:
+        description: 'Type of execution (Standard or BrowserStack)'
+        required: true
+        default: 'standard'
+        type: choice
+        options:
+          - standard
+          - browserstack
 
 permissions:
   contents: write
@@ -42,11 +50,11 @@ jobs:
         run: npm ci
 
       - name: Install WebKit (if Safari)
+        if: ${{ github.event.inputs.execution_type == 'standard' && (github.event.inputs.browser == 'safari(webkit)' || github.event.inputs.browser == 'webkit') }}
         run: |
-          if [ "${{ github.event.inputs.browser }}" == "safari(webkit)" ] || [ "${{ github.event.inputs.browser }}" == "webkit" ]; then
-            npx playwright install webkit
-            sudo npx playwright install-deps webkit
-          fi
+          npx playwright install webkit
+          sudo npx playwright install-deps webkit
+
       - name: Initialize Database and Start Local API Server
         if: ${{ github.event.inputs.environment == 'dev' }}
         run: |
@@ -56,7 +64,8 @@ jobs:
       - name: Create Auth Fixture from Secret
         run: echo '${{ secrets.CYPRESS_AUTH }}' > cypress/fixtures/auth.json
 
-      - name: Run Cypress Tests
+      - name: Run Cypress Tests (Standard)
+        if: ${{ github.event.inputs.execution_type == 'standard' }}
         run: |
           BROWSER_ARG="${{ github.event.inputs.browser }}"
           if [ "$BROWSER_ARG" == "safari(webkit)" ]; then
@@ -64,6 +73,14 @@ jobs:
           fi
           npm run cy:run:${{ github.event.inputs.environment }} -- --browser "$BROWSER_ARG"
         env:
+          allure_results_dir: allure-results
+
+      - name: Run Cypress Tests (BrowserStack)
+        if: ${{ github.event.inputs.execution_type == 'browserstack' }}
+        run: npm run browserstack:run
+        env:
+          BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
+          BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
           allure_results_dir: allure-results
 
       - name: Generate Allure Environment and Executor
