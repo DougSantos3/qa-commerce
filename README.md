@@ -239,6 +239,15 @@ O comando abaixo inicia o servidor local automaticamente, estabelece a conexão 
 npm run test:browserstack
 ```
 
-> ⚠️ **Atenção (Plano Free):** Se você estiver utilizando uma conta gratuita do BrowserStack, fique atento aos limites de minutos e instâncias. Caso o limite seja atingido, o serviço interromperá a execução automaticamente e os testes aparecerão como falha no console.
+Ao executar este comando (ou acionar o workflow via GitHub Actions), a suite será testada simultaneamente nos seguintes ambientes:
 
-Você pode acompanhar a execução em tempo real no dashboard do BrowserStack. Os navegadores configurados incluem **Chrome, Firefox, Edge e Safari**.
+*   **Chrome** (Latest & Latest-1) no **Windows 10**
+*   **Firefox** no **Windows 11**
+*   **Edge** no **Windows 10**
+*   **Safari** no **macOS Ventura**
+
+Acesse o arquivo na raiz browserstack.json e veja com mais detalhes!
+
+> ⚠️ **Atenção (Plano Free):** Se você estiver utilizando uma conta gratuita do BrowserStack, o serviço possui limites rigorosos de tempo e instâncias paralelas. Se o limite for atingido durante a execução, o BrowserStack encerrará as sessões e o comando retornará um erro de falha.
+
+Você pode acompanhar a execução em tempo real no seu dashboard do BrowserStack. 
