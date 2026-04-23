@@ -162,12 +162,14 @@ Ao disparar os testes (seja no GitHub Actions ou via linha de comando), você po
 >   > 🔐 **Configuração de Secrets:** No seu Fork, para que os testes de autenticação e nuvem funcionem, você deve criar os seguintes Secrets em `Settings > Secrets and variables > Actions`. **Atenção:** Você deve usar as suas próprias chaves obtidas no painel do BrowserStack:
 >   > - **`CYPRESS_AUTH`**: (JSON)
 >   >   ```json
->   >   { "adminEmail": "email@example.com", "adminPassword": "password" }
+>   >   { "adminEmail": "admin@admin.com", "adminPassword": "admin" }
 >   >   ```
 >   > - **`BROWSERSTACK_USERNAME`**: O seu nome de usuário (Username) do BrowserStack.
 >   > - **`BROWSERSTACK_ACCESS_KEY`**: A sua chave de acesso (Access Key) do BrowserStack.
 >
-> - **Para rodar Localmente:** Basta fazer o **Clone** do projeto (ou do seu Fork) para a sua máquina. Para habilitar o BrowserStack localmente, use o arquivo `.env` na raiz do projeto e preencha com **as suas credenciais pessoais** (veja a seção de [Credenciais do BrowserStack](#-configuração-das-credenciais) abaixo).
+> - **Para rodar Localmente:** Basta fazer o **Clone** do projeto (ou do seu Fork) para a sua máquina. 
+>   1. Preencha o arquivo `cypress/fixtures/auth.json` com o formato: `{ "adminEmail": "admin@admin.com", "adminPassword": "admin" }`.
+>   2. Para habilitar o BrowserStack localmente, use o arquivo `.env` na raiz do projeto e preencha com **as suas credenciais pessoais** (veja a seção de [Credenciais do BrowserStack](#-configuração-das-credenciais) abaixo).
 
 ### 💻 Execução Local (Comandos Cypress)
 
