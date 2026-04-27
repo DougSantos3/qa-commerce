@@ -11,7 +11,6 @@ Esquema do Cenário: Fechamento de compra com cartão de crédito com a "<bandei
   E adiciono um produto ao carrinho
   Quando eu finalizo a compra com cartão de crédito da bandeira "<bandeira>"
   Então o pedido deve ser concluido com sucesso e exibir o numero do pedido
-
   Exemplos:
     | bandeira   |
     | Visa       |
