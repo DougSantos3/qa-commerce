@@ -136,4 +136,14 @@ cypress_results.txt
 # internal db
 qa_commerce.db
 
+# browserstack
+browserstack.log
+bs-local.log
+browserstack-cypress-report.json
+
+# others
 *.json
+!cypress/fixtures/locales/**/*.json
+.prettierignore
+.eslintignore
+.dockerignore

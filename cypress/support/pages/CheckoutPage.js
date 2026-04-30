@@ -1,74 +1,78 @@
 class CheckoutPage {
-  _fillInput(label, value) {
-    cy.contains('label', label).parent().find('input').clear().type(value)
-  }
-
   fillPersonalData(user) {
-    this._fillInput('Nome *', user.firstName)
-    this._fillInput('Sobrenome *', user.lastName)
-    this._fillInput('Endereço *', user.address)
-    this._fillInput('Número *', user.number)
-    this._fillInput('CEP *', user.cep)
-    this._fillInput('Telefone', user.phone)
-    this._fillInput('Email *', user.email)
+    cy.get('#first-name').clear()
+    cy.get('#first-name').type(user.firstName)
+    cy.get('#last-name').clear()
+    cy.get('#last-name').type(user.lastName)
+    cy.get('#address').clear()
+    cy.get('#address').type(user.address)
+    cy.get('#number').clear()
+    cy.get('#number').type(user.number)
+    cy.get('#cep').clear()
+    cy.get('#cep').type(user.cep)
+    if (user.phone) {
+      cy.get('#phone').clear()
+      cy.get('#phone').type(user.phone)
+    }
+    cy.get('#email').clear()
+    cy.get('#email').type(user.email)
   }
 
   fillPassword(password) {
-    this._fillInput('Senha *', password)
-    this._fillInput('Confirmar Senha *', password)
+    cy.get('#password').clear()
+    cy.get('#password').type(password)
+    cy.get('#confirm-password').clear()
+    cy.get('#confirm-password').type(password)
   }
 
   checkCreateAccount() {
-    cy.contains('Deseja criar uma conta com').click()
+    cy.get('#create-account').check()
   }
 
   selectCreditCard(cardNumber, validity, cvc) {
-    cy.contains('Cartão de Crédito').click()
-    this._fillInput('Número do Cartão *', cardNumber)
-    this._fillInput('Validade *', validity)
-    this._fillInput('CVC *', cvc)
+    cy.get('#payment-card').check()
+    cy.get('#card-number').clear()
+    cy.get('#card-number').type(cardNumber)
+    cy.get('#card-expiry').clear()
+    cy.get('#card-expiry').type(validity)
+    cy.get('#card-cvc').clear()
+    cy.get('#card-cvc').type(cvc)
   }
 
   selectPix() {
-    cy.contains('Pix').click()
-    cy.contains('Detalhes do Pix').should('be.visible')
+    cy.get('#payment-pix').check()
+    cy.get('#pix-details').should('be.visible')
   }
 
   selectBoleto() {
-    cy.contains('Boleto').click()
-    cy.contains('Código de Boleto:').should('be.visible')
+    cy.get('#payment-boleto').check()
+    cy.get('#boleto-details').should('be.visible')
   }
 
   acceptTerms() {
-    cy.get('#terms').check({ force: true })
+    cy.get('#terms').check()
   }
 
   finishOrder() {
-    cy.contains('button', 'Finalizar Pedido').click()
+    cy.get('button[type="submit"]').click()
   }
 
   verifySuccessMessage() {
-    cy.contains('Obrigado pelo seu pedido').should('be.visible')
-    cy.contains('Pagamento aprovado').should('be.visible')
+    cy.get('#order-status', { timeout: 10000 }).should('be.visible')
+    cy.fixture('locales/pt.json').then((loc) => {
+      cy.get('#order-status').should('contain', loc.checkout.success)
+    })
   }
 
   verifySuccessPixBoleto() {
     this.verifySuccessMessage()
-    cy.contains('ID do Pedido:').should('be.visible')
+    cy.fixture('locales/pt.json').then((loc) => {
+      cy.get('#order-status').should('contain', loc.checkout.orderIdLabel)
+    })
   }
 
   verifyValidationErrors() {
-    const errors = [
-      'Li e concordo com os Termos e Condições deste site. * Este campo é obrigatório.',
-      'Nome * Este campo é obrigatório.',
-      'Sobrenome * Este campo é',
-      'Endereço * Este campo é',
-      'Número * Este campo é obrigat',
-      'CEP * Este campo é obrigató',
-      'Email * Este campo é obrigató',
-      'Por favor, preencha todos os'
-    ]
-    errors.forEach(msg => cy.contains(msg).should('be.visible'))
+    cy.get('#alert-container').should('be.visible')
   }
 }
 

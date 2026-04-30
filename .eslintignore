@@ -1,0 +1,7 @@
+node_modules
+dist
+allure-results
+cypress/screenshots
+cypress/videos
+public/js/index.js
+public/js/product.js

@@ -1,0 +1,7 @@
+node_modules
+allure-report
+allure-results
+cypress_results.txt
+.git
+.github
+.DS_Store

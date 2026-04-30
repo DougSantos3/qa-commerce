@@ -1,27 +1,6 @@
-import { faker } from '@faker-js/faker'
-
 class ApiService {
   constructor() {
     this.apiUrl = Cypress.config('baseUrl') + '/api'
-  }
-
-  generateCheckoutPayload(overrides = {}) {
-    return {
-      userId: faker.number.int({ min: 1000, max: 9999 }),
-      firstName: faker.person.firstName(),
-      lastName: faker.person.lastName(),
-      address: faker.location.streetAddress(),
-      number: '77',
-      cep: '09763800',
-      phone: '1143398585',
-      email: faker.internet.email(),
-      paymentMethod: 'credit_card',
-      cardNumber: '4920212106084585', 
-      cardExpiry: '1230',
-      cardCvc: '123',
-      createAccount: false,
-      ...overrides
-    }
   }
 
   setupCart(userId, productId = 1, quantity = 1) {
@@ -50,6 +29,25 @@ class ApiService {
     return cy.request('GET', `${this.apiUrl}/carrinho/${userId}`)
   }
 
+  updateUser(userId, payload, token) {
+    return cy.request({
+      method: 'PUT',
+      url: `${this.apiUrl}/users/${userId}`,
+      body: payload,
+      headers: {
+        Authorization: token
+      },
+      failOnStatusCode: false
+    })
+  }
+
+  login(email, password) {
+    return cy.request({
+      method: 'POST',
+      url: `${this.apiUrl}/login`,
+      body: { email, password }
+    })
+  }
 }
 
 export default new ApiService()
