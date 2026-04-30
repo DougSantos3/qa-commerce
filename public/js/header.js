@@ -1,4 +1,3 @@
-//import { updateCartCount } from './cart-count.js';
 document.addEventListener('DOMContentLoaded', function () {
   fetch('/header.html')
     .then((response) => response.text())
@@ -8,22 +7,20 @@ document.addEventListener('DOMContentLoaded', function () {
       checkLoginStatus()
     })
 
-  function checkLoginStatus() {
-    const user = sessionStorage.getItem('user')
-    const accountLink = document.getElementById('account-link')
-
-    if (user) {
-      accountLink.href = '/dashboard.html'
-    } else {
-      accountLink.href = '/login.html'
-    }
-  }
-
-  function logout() {
-    sessionStorage.removeItem('user')
-    globalThis.location.href = '/login.html'
   }
 })
+
+function checkLoginStatus() {
+  const user = sessionStorage.getItem('user')
+  const accountLink = document.getElementById('account-link')
+
+  if (user) {
+    accountLink.href = '/dashboard.html'
+  } else {
+    accountLink.href = '/login.html'
+  }
+}
+
 
 // Função para atualizar o contador do carrinho
 function updateCartCount(userId) {

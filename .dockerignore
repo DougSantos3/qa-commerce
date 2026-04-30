@@ -2,6 +2,17 @@ node_modules
 allure-report
 allure-results
 cypress_results.txt
+npm_install_debug.log
 .git
 .github
 .DS_Store
+.env
+browserstack.json
+collection-pm.json
+.vscode
+.eslintignore
+.prettierignore
+.prettierrc
+Dockerfile
+.dockerignore
+.gitignore

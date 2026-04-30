@@ -130,7 +130,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     paginationElement.addEventListener('click', function (event) {
       if (event.target.tagName === 'A') {
         event.preventDefault()
-        const page = Number.parseInt(event.target.getAttribute('data-page'), 10)
+        const page = Number.parseInt(event.target.dataset.page, 10)
         if (page !== currentPage && page > 0) {
           currentPage = page
           fetchProducts(currentPage)
