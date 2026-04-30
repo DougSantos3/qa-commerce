@@ -88,14 +88,16 @@ document.addEventListener('DOMContentLoaded', function () {
       })
   }
 
-  // Função para exibir alertas
-  function showAlert(message, type) {
-    const alertContainer = document.getElementById('alert-container')
-    alertContainer.className = `alert alert-${type}`
-    alertContainer.textContent = message
-    alertContainer.classList.remove('d-none')
-    setTimeout(() => {
-      alertContainer.classList.add('d-none')
-    }, 3000)
   }
 })
+
+// Função para exibir alertas
+function showAlert(message, type) {
+  const alertContainer = document.getElementById('alert-container')
+  alertContainer.className = `alert alert-${type}`
+  alertContainer.textContent = message
+  alertContainer.classList.remove('d-none')
+  setTimeout(() => {
+    alertContainer.classList.add('d-none')
+  }, 3000)
+}

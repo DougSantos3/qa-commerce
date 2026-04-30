@@ -16,8 +16,11 @@ RUN npm install
 
 COPY --chown=node:node . .
 
+COPY --chown=node:node scripts/docker-entrypoint.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+
 EXPOSE 3000
 
 ENTRYPOINT []
 
-CMD npm run db && npm start & npx wait-on http://127.0.0.1:3000 && npm run cy:run:dev && npm run allure:generate
+CMD ["docker-entrypoint.sh"]

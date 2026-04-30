@@ -19,15 +19,10 @@ document.addEventListener('DOMContentLoaded', function () {
     const password = document.getElementById('password').value.trim()
     let hasErrors = false
 
-    if (!email) {
+    const emailRegex = /^[^\s@]+@[^\s@.]+(?:\.[^\s@.]+)+$/
+    if (!email || email.length > 254 || !emailRegex.test(email)) {
       setError('email', 'Por favor, insira um email válido.')
       hasErrors = true
-    } else {
-      const emailRegex = /^[^\s@]+@[^\s@.]+(?:\.[^\s@.]+)+$/
-      if (email.length > 254 || !emailRegex.test(email)) {
-        setError('email', 'Por favor, insira um email válido.')
-        hasErrors = true
-      }
     }
 
     if (!password) {
@@ -60,18 +55,19 @@ document.addEventListener('DOMContentLoaded', function () {
         showError(error.message)
       })
   })
-
-  function setError(fieldId, message) {
-    const field = document.getElementById(fieldId)
-    field.classList.add('is-invalid')
-    const feedback = field.nextElementSibling
-    if (feedback) {
-      feedback.textContent = message
-    }
-  }
-
-  function showError(message) {
-    errorContainer.classList.remove('d-none')
-    errorContainer.textContent = message
-  }
 })
+
+function setError(fieldId, message) {
+  const field = document.getElementById(fieldId)
+  field.classList.add('is-invalid')
+  const feedback = field.nextElementSibling
+  if (feedback) {
+    feedback.textContent = message
+  }
+}
+
+function showError(message) {
+  const errorContainer = document.getElementById('error-container')
+  errorContainer.classList.remove('d-none')
+  errorContainer.textContent = message
+}
