@@ -1,10 +1,10 @@
-const { defineConfig } = require('cypress')
-const createBundler = require('@bahmutov/cypress-esbuild-preprocessor')
-const preprocessor = require('@badeball/cypress-cucumber-preprocessor')
-const createEsbuildPlugin = require('@badeball/cypress-cucumber-preprocessor/esbuild')
-const { allureCypress } = require('allure-cypress/reporter')
-const cypressOnFix = require('cypress-on-fix')
-const db = require('./cypress/support/db')
+const { defineConfig } = require("cypress")
+const { allureCypress } = require("allure-cypress/reporter")
+const cypressOnFix = require("cypress-on-fix")
+const createBundler = require("@bahmutov/cypress-esbuild-preprocessor")
+const preprocessor = require("@badeball/cypress-cucumber-preprocessor")
+const createEsbuildPlugin = require("@badeball/cypress-cucumber-preprocessor/esbuild")
+
 
 async function setupNodeEvents(on, config) {
   on = cypressOnFix(on)

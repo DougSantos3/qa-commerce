@@ -1,5 +1,5 @@
 import { When as Quando, Then as Entao } from '@badeball/cypress-cucumber-preprocessor'
-import CarrinhoPage from '../../../support/pages/CarrinhoPage'
+import CarrinhoPage from '../../support/pages/CarrinhoPage'
 
 Quando('eu acesso o meu carrinho sem adicionar produtos', () => {
   cy.emptyCartUi()
