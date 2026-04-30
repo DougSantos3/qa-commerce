@@ -10,7 +10,14 @@ COPY --chmod=444 package*.json ./
 
 RUN npm install
 
-COPY --chmod=444 . .
+COPY --chmod=444 src ./src
+COPY --chmod=444 public ./public
+COPY --chmod=444 config ./config
+COPY --chmod=444 middleware ./middleware
+COPY --chmod=444 scripts ./scripts
+COPY --chmod=444 cypress ./cypress
+COPY --chmod=444 cypress.config.js ./
+COPY --chmod=444 eslint.config.js ./
 
 COPY --chmod=555 scripts/docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 
