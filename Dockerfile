@@ -6,11 +6,15 @@ RUN apt-get update && \
 
 WORKDIR /app
 
-COPY package*.json ./
+RUN chown node:node /app
+
+USER node
+
+COPY --chown=node:node package*.json ./
 
 RUN npm install
 
-COPY . .
+COPY --chown=node:node . .
 
 EXPOSE 3000
 

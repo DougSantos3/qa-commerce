@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const emailField = document.getElementById('email')
     const emailValue = emailField.value.trim()
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    const emailRegex = /^[^\s@]+@[^\s@.]+(?:\.[^\s@.]+)+$/
     if (emailValue.length > 254 || !emailRegex.test(emailValue)) {
       hasErrors = true
       showError(emailField, 'Por favor, insira um email válido.')
