@@ -55,17 +55,20 @@ jobs:
           npm start & npx wait-on http://127.0.0.1:3000
 
       - name: Create Auth Fixture from Secret
-        run: echo '${{ secrets.CYPRESS_AUTH }}' > cypress/fixtures/auth.json
+        run: echo "$CYPRESS_AUTH" > cypress/fixtures/auth.json
+        env:
+          CYPRESS_AUTH: ${{ secrets.CYPRESS_AUTH }}
 
       - name: Run Cypress Tests (Standard)
         if: ${{ github.event.inputs.browser != 'browserstack' }}
         run: |
-          BROWSER_ARG="${{ github.event.inputs.browser }}"
           if [ "$BROWSER_ARG" == "safari(webkit)" ]; then
             BROWSER_ARG="webkit"
           fi
-          npm run cy:run:${{ github.event.inputs.environment }} -- --browser "$BROWSER_ARG"
+          npm run "cy:run:$ENVIRONMENT" -- --browser "$BROWSER_ARG"
         env:
+          BROWSER_ARG: ${{ github.event.inputs.browser }}
+          ENVIRONMENT: ${{ github.event.inputs.environment }}
           allure_results_dir: allure-results
 
       - name: Run Cypress Tests (BrowserStack)

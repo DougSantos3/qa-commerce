@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function () {
       setError('email', 'Por favor, insira um email válido.')
       hasErrors = true
     } else {
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+      const emailRegex = /^[^\s@]+@[^\s@.]+(?:\.[^\s@.]+)+$/
       if (email.length > 254 || !emailRegex.test(email)) {
         setError('email', 'Por favor, insira um email válido.')
         hasErrors = true
