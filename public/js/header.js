@@ -6,8 +6,6 @@ document.addEventListener('DOMContentLoaded', function () {
       updateCartCount(1) // Supondo userId 1
       checkLoginStatus()
     })
-
-  }
 })
 
 function checkLoginStatus() {
