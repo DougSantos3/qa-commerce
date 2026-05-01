@@ -4,6 +4,7 @@ const cypressOnFix = require("cypress-on-fix")
 const createBundler = require("@bahmutov/cypress-esbuild-preprocessor")
 const preprocessor = require("@badeball/cypress-cucumber-preprocessor")
 const createEsbuildPlugin = require("@badeball/cypress-cucumber-preprocessor/esbuild")
+const db = require("./cypress/support/db")
 
 
 async function setupNodeEvents(on, config) {
