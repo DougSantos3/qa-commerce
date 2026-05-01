@@ -87,8 +87,6 @@ document.addEventListener('DOMContentLoaded', function () {
         showAlert('Erro ao buscar produtos no carrinho!', 'danger')
       })
   }
-
-  }
 })
 
 // Função para exibir alertas
