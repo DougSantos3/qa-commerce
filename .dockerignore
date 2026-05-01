@@ -16,3 +16,6 @@ collection-pm.json
 Dockerfile
 .dockerignore
 .gitignore
+cypress/screenshots
+cypress/videos
+cypress/downloads

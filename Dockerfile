@@ -10,19 +10,20 @@ COPY --chmod=444 package*.json ./
 
 RUN npm install
 
-COPY --chmod=444 src ./src
-COPY --chmod=444 public ./public
-COPY --chmod=444 config ./config
-COPY --chmod=444 middleware ./middleware
-COPY --chmod=444 scripts ./scripts
-COPY --chmod=444 cypress ./cypress
+COPY --chmod=555 src ./src
+COPY --chmod=555 public ./public
+COPY --chmod=555 config ./config
+COPY --chmod=555 middleware ./middleware
+COPY --chmod=555 scripts ./scripts
+COPY --chmod=555 cypress ./cypress
 COPY --chmod=444 cypress.config.js ./
 COPY --chmod=444 eslint.config.js ./
 
 COPY --chmod=555 scripts/docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 
-RUN chown -R node:node /app/node_modules /app/src && \
-    chmod -R 755 /app/node_modules /app/src
+RUN mkdir -p /app/allure-results /app/allure-report /app/cypress/screenshots /app/cypress/videos /app/cypress/downloads && \
+    chown -R node:node /app/node_modules /app/src /app/allure-results /app/allure-report /app/cypress/screenshots /app/cypress/videos /app/cypress/downloads && \
+    chmod -R 755 /app/node_modules /app/src /app/allure-results /app/allure-report /app/cypress/screenshots /app/cypress/videos /app/cypress/downloads
 
 USER node
 
